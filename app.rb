@@ -10,9 +10,12 @@ before { puts "Parameters: #{params}" }
 ForecastIO.api_key = "YOUR-API-KEY"
 
 get "/" do
-  # show a view that asks for the location
+    view "ask" # show a view that asks for the location
 end
 
 get "/news" do
-  # do everything else
+      results = Geocoder.search(params["q"])
+    lat_long = results.first.coordinates # => [lat, long]
+    "#{lat_long[0]} #{lat_long[1]}"
+    # do everything else
 end
