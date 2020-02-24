@@ -1,13 +1,6 @@
 body {
   font-family: 'Raleway', sans-serif;
 }
-
 .jumbotron {
-  color: darkblue;
-
-}
-
-h3 {
-    font-family: 'Lato', sans-serif;
-    color: darkblue;
+  color: green;
 }
