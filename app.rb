@@ -8,9 +8,6 @@ before { puts "Parameters: #{params}" }
 
 # enter your Dark Sky API key here
 ForecastIO.api_key = "220801cf91d4be60ef407d58d2e5fe4c"
-url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=ff8a14f637a549a284639672b2ddddce"
-
-
 get "/" do
     view "ask"
 end
@@ -28,9 +25,21 @@ forecast = ForecastIO.forecast("#{lat_long[0]}","#{lat_long[1]}").to_hash
 @current_temp = forecast["currently"]["temperature"]
 @conditions = forecast["currently"]["summary"]
 
-news = HTTParty.get(url).parsed_response.to_hash
+url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=ff8a14f637a549a284639672b2ddddce"
 
-pp news
+@news = HTTParty.get(url).parsed_response.to_hash
 
+for headline in news["articles"]
+@top_headlines = "#{headline["title"]} by #{headline["author"]} by #{story["author"]}
+end
+
+# puts "#{story["title"]} by #{story["author"]}"
+
+# @top_stories = news["articles"]
+
+# for stories in news["articles"]
+#     r "#{stories["title"]} by #{stories["url"]}."
+# end
+# @top_stories = stories
 view "newspaper"
 end
