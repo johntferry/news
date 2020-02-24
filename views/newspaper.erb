@@ -18,11 +18,23 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title> <%= @location %> Newspaper</title>
+<title> <%= @location %> Newspaper</title>
   </head>
+
+    <div class="jumbotron">
+  <h1 class="display-4"><%= @location %> Newspaper</h1>
+  <p class="lead"><%= @location %> Weather and News </p>
+  </div>
   <body>
-    <div class="container mt-5">
-      <h1> <%= @location %> Newspaper</h1>
+      <h3> In <%= @location %>, it currently <%= @current_temp %> degrees and <%= @conditions %>.</h3>
+      <ul>
+    <% for day in @forecast["daily"]["data"] %>
+      <li><%= "A high temperature of #{day["temperatureHigh"]} and #{day["summary"]}." %></li>
+    <% end %>
+  </ul>
+
+   <div class="container mt-5">
+<div class="container mt-5">
        <iframe
         width="600"
         height="450"
@@ -30,26 +42,20 @@
         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw
           &q=<%= @lat_long %>&zoom=6" allowfullscreen>
       </iframe>
-<iframe
-        width="600"
-        height="450"
-        frameborder="0" style="border:0"
-        src="http://newsapi.org/v2/everything?q=<%= @location %>&apiKey=ff8a14f637a549a284639672b2ddddce" allowfullscreen>
-      </iframe>
-
-      <p> In <%= @location %>, it currently <%= @current_temp %> degrees and <%= @conditions %>.</p>
-      <ul>
-    <% for day in @forecast["daily"]["data"] %>
-      <li><%= "A high temperature of #{day["temperatureHigh"]} and #{day["summary"]}." %></li>
-    <% end %>
-  </ul>
-   <div class="container mt-5">
       <h1>Top News in <%= @location %>!</h1>
-     <ul>
-    <% for topnews in @news["articles"] %>
-      <li> <a href="<=% topnews[url] %>"> <%= topnews["title"] %></a>
-</li>
-    <% end %>
+
+<% for link in @topurls %>
+<% for name in @toptitles %>
+<div class= "row-sm">
+<div class="card" style="width: 50rem;">
+ <div class="card-body">
+    <h3 class="card-title"><%= name %></h3>
+    <a href=<%= link %> class="card-link">Link</a>
+</div>
+</div>
+ </div>
+  <% end %>
+  <% end %>
   </ul>
       <a href="/" class="btn btn-primary">Go again!</a>
       </p>
