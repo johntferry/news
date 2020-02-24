@@ -18,12 +18,12 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News</title>
+    <title>Newspaper</title>
   </head>
   <body>
 
     <div class="container mt-5">
-      <h1>News</h1>
+      <h1>Newspaper</h1>
        <iframe
         width="600"
         height="450"
@@ -31,8 +31,9 @@
         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw
           &q=<%= @lat_long %>&zoom=6" allowfullscreen>
       </iframe>
-      <p>
-        <a href="/" class="btn btn-primary">Go again!</a>
+      <p> In <%= @location %>, it currently <%= @current_temp %> degrees and <%= @conditions %>.</p>
+      
+      <a href="/" class="btn btn-primary">Go again!</a>
       </p>
 
     <!-- Optional JavaScript -->
