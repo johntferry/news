@@ -29,9 +29,14 @@ url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=ff8a14f637a549a2846
 
 @news = HTTParty.get(url).parsed_response.to_hash
 
-for headline in news["articles"]
-@top_headlines = "#{headline["title"]} by #{headline["author"]} by #{story["author"]}
+for headlines in @news["articles"]
+    puts "#{headlines["title"]} by #{headlines["author"]}."
 end
+
+
+# for headline in @news["articles"]
+#     << "#{headline["title"]} by #{headline["author"]}"
+# end
 
 # puts "#{story["title"]} by #{story["author"]}"
 

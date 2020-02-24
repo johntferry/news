@@ -42,8 +42,9 @@
 <div class="container mt-5">
       <h1>Top News!</h1>
       <div class="row">
-        <% for title in @news %>
-            <p> "<%= title %> by <%= author %>"</p>
+        <% for headlines in @news %>
+            <div class="col-sm-2">
+                      <p> In <%= @location %>, the top headlines are <%= headlines %>. </p>
             </div>
         <% end %>
       </div>
