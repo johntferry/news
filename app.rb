@@ -20,18 +20,18 @@ get "/newspaper" do
     @long = "#{lat_long[1]}"
     @lat_long = "#{@lat},#{@long}"
     
-forecast = ForecastIO.forecast("#{lat_long[0]}","#{lat_long[1]}").to_hash
+@forecast = ForecastIO.forecast("#{lat_long[0]}","#{lat_long[1]}").to_hash
 
-@current_temp = forecast["currently"]["temperature"]
-@conditions = forecast["currently"]["summary"]
+@current_temp = @forecast["currently"]["temperature"]
+@conditions = @forecast["currently"]["summary"]
 
 url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=ff8a14f637a549a284639672b2ddddce"
 
 @news = HTTParty.get(url).parsed_response.to_hash
 
-for headlines in @news["articles"]
-    puts "#{headlines["title"]} by #{headlines["author"]}."
-end
+# @article_title = news["title"]
+# @article_author = news["author"]
+# @article_url = news["url"]
 
 
 # for headline in @news["articles"]

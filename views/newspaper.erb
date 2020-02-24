@@ -30,7 +30,6 @@
         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw
           &q=<%= @lat_long %>&zoom=6" allowfullscreen>
       </iframe>
-
 <iframe
         width="600"
         height="450"
@@ -39,18 +38,21 @@
       </iframe>
 
       <p> In <%= @location %>, it currently <%= @current_temp %> degrees and <%= @conditions %>.</p>
-<div class="container mt-5">
-      <h1>Top News!</h1>
-      <div class="row">
-        <% for headlines in @news %>
-            <div class="col-sm-2">
-                      <p> In <%= @location %>, the top headlines are <%= headlines %>. </p>
-            </div>
-        <% end %>
-      </div>
+      <ul>
+    <% for day in @forecast["daily"]["data"] %>
+      <li><%= "A high temperature of #{day["temperatureHigh"]} and #{day["summary"]}." %></li>
+    <% end %>
+  </ul>
+   <div class="container mt-5">
+      <h1>Top News in <%= @location %>!</h1>
+     <ul>
+    <% for topnews in @news["articles"] %>
+      <li> <a href="<=% topnews[url] %>"> <%= topnews["title"] %></a>
+</li>
+    <% end %>
+  </ul>
       <a href="/" class="btn btn-primary">Go again!</a>
       </p>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
